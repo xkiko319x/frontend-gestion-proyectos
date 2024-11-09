@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'companies', component: CompaniesComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },  // Redirige a la ruta de 'offers'
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];
 
