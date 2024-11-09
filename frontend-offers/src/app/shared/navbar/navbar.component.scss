@@ -1,0 +1,25 @@
+/* src/app/shared/navbar/navbar.component.scss */
+nav {
+  background-color: #333;
+  padding: 1rem;
+}
+
+button {
+  background-color: #007bff; /* Color de fondo del botón */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  margin-right: 20px; /* Espaciado entre botones */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: background-color 0.3s; /* Transición suave al cambiar el color */
+}
+
+button:hover {
+  background-color: #0056b3; /* Color del botón al pasar el mouse */
+}
+
+button:focus {
+  outline: none; /* Elimina el contorno al hacer clic */
+}
