@@ -18,12 +18,6 @@ export class CompaniesComponent implements OnInit {
     { headerName: 'Company Reference', field: 'company_reference' }
   ];
 
-  // rowData = [
-  //   { make: 'Toyota', model: 'Celica', price: 35000 },
-  //   { make: 'Ford', model: 'Mondeo', price: 32000 },
-  //   { make: 'Porsche', model: 'Boxster', price: 72000 }
-  // ];
-
   ngOnInit() {
     this._companiesService.getCompanies().subscribe({
       next: (value) => {  // Usamos función flecha para mantener el contexto de `this`

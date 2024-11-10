@@ -10,7 +10,7 @@ export class CompanyService {
   constructor(private http: HttpClient) {}
 
   getCompanies(): Observable<any> {
-    const apiUrl = 'http://127.0.0.1:8000/api/companies/';
+    const apiUrl = 'https://backend-gestion-proyectos-jnz9.onrender.com/api/companies/';
     return this.http.get(apiUrl);
   }
 
