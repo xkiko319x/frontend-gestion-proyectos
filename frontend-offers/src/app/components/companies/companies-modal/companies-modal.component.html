@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>
+  Formulario en Modal
+  <button mat-icon-button (click)="onClose()" class="close-button" aria-label="Close">
+    <mat-icon>close</mat-icon>
+  </button>
+</h2>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="form" style="height: 600px;">
+  <mat-dialog-content>
+    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
+      <mat-label style="font-size: 16px;">Nombre de la Compañía</mat-label>
+      <input matInput formControlName="company_name" required style="font-size: 16px; padding: 15px 10px;">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
+      <mat-label style="font-size: 16px;">Dirección</mat-label>
+      <input matInput formControlName="company_address" required style="font-size: 16px; padding: 15px 10px;">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
+      <mat-label style="font-size: 16px;">Referencia de la Compañía</mat-label>
+      <input matInput formControlName="company_reference" required style="font-size: 16px; padding: 15px 10px;">
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button (click)="onClose()">Cancelar</button>
+    <button mat-button type="submit" [disabled]="form.invalid">Enviar</button>
+  </mat-dialog-actions>
+</form>
+

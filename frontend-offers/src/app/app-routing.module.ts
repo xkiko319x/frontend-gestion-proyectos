@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OffersComponent } from './components/offers/offers.component';
-import { CompaniesComponent } from './components/companies/companies.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { LoginComponent } from './components/login/login.component';
+import { CompaniesTableComponent } from './components/companies/companies-table/companies-table.component';
 
 const routes: Routes = [
   { path: 'offers', component: OffersComponent },
-  { path: 'companies', component: CompaniesComponent },
+  { path: 'companies', component: CompaniesTableComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' }
+  { path: '', redirectTo: '/companies', pathMatch: 'full' },
+  { path: '**', redirectTo: '/companies' }
 ];
 
 @NgModule({

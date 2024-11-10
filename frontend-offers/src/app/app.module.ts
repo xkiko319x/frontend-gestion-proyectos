@@ -4,38 +4,40 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { OffersComponent } from './components/offers/offers.component';
-import { CompaniesComponent } from './components/companies/companies.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { SharedModule } from './shared/shared.module';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
+import { CompaniesModule } from './components/companies/companies.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     OffersComponent,
-    CompaniesComponent,
     ProjectsComponent,
     LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,  // Aquí importamos AppRoutingModule
-    SharedModule
+    AppRoutingModule,
+    SharedModule,
+    CompaniesModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-// import { NgModule } from '@angular/core';
-// import { BrowserModule } from '@angular/platform-browser';
-// import { AppComponent } from './app.component';
-// import { HttpClientModule } from '@angular/common/http';
-// import { AppRoutingModule } from './app-routing.module';
-
-// @NgModule({
-//   declarations: [AppComponent],  // Declara el componente principal
-//   imports: [BrowserModule, HttpClientModule, AppRoutingModule],  // Importa BrowserModule y HttpClientModule
-//   bootstrap: [AppComponent]  // Define el componente principal de inicio
-// })
-// export class AppModule { }
