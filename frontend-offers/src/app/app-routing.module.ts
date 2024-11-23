@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OffersComponent } from './components/offers/offers.component';
-import { ProjectsComponent } from './components/projects/projects.component';
 import { LoginComponent } from './components/login/login.component';
 import { CompaniesTableComponent } from './components/companies/companies-table/companies-table.component';
+import { OffersTableComponent } from './components/offers/offers-table/offers-table.component';
+import { ProjectsTableComponent } from './components/projects/projects-table/projects.component';
+
 
 const routes: Routes = [
-  { path: 'offers', component: OffersComponent },
+  { path: 'offers', component: OffersTableComponent },
   { path: 'companies', component: CompaniesTableComponent },
-  { path: 'projects', component: ProjectsComponent },
+  { path: 'projects', component: ProjectsTableComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/companies', pathMatch: 'full' },
   { path: '**', redirectTo: '/companies' }

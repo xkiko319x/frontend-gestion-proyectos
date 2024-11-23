@@ -1,16 +1,22 @@
-<!-- src/app/login/login.component.html -->
-<div class="login-container">
-  <h2>Iniciar Sesión</h2>
-  <form (submit)="onLogin()">
-    <div>
-      <label for="username">Nombre de usuario:</label>
-      <input type="text" id="username" [(ngModel)]="username" name="username" required>
+<div class="login">
+  <div class="login-screen">
+    <div class="app-title">
+      <h1>Welcome</h1>
     </div>
-    <div>
-      <label for="password">Contraseña:</label>
-      <input type="password" id="password" [(ngModel)]="password" name="password" required>
+
+    <div class="login-form">
+      <div class="control-group">
+        <input type="text" class="login-field" value="" placeholder="username" id="login-name">
+        <label class="login-field-icon fui-user" for="login-name"></label>
+      </div>
+
+      <div class="control-group">
+        <input type="password" class="login-field" value="" placeholder="password" id="login-pass">
+        <label class="login-field-icon fui-lock" for="login-pass"></label>
+      </div>
+
+      <a class="btn btn-primary btn-large btn-block" href="#">Login</a>
+      <a class="login-link" href="#">Lost your password?</a>
     </div>
-    <button type="submit">Iniciar Sesión</button>
-  </form>
-  <div *ngIf="message">{{ message }}</div>
+  </div>
 </div>

@@ -1,0 +1,43 @@
+/* Estilos para el formulario de dos columnas */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+  gap: 20px; /* Espacio entre campos */
+  width: 80%; /* Ancho del formulario */
+  margin: 0 auto; /* Centra el formulario en la pantalla */
+  margin-top: 30px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-field input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Para mejorar la apariencia de los campos solo lectura */
+.form-field input[readonly] {
+  background-color: #f5f5f5;
+}
+
+.form-actions {
+  grid-column: span 2; /* Ocupa el ancho completo de la última fila */
+  display: flex;
+  justify-content: flex-start; /* Alineación a la izquierda */
+  gap: 15px; /* Espacio entre los botones */
+  margin-top: 20px;
+}
+
+.center-modal .mat-dialog-container {
+  transform: translate(-50%, -50%) !important;  // Asegura que se mantenga centrado
+}

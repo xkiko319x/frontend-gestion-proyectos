@@ -1,0 +1,95 @@
+
+<div class="content" style="width: 100%; height: 100%;">
+  <app-component-name title="Projects" buttonLabel="Añadir Proyecto" (buttonClick)="openModal()"></app-component-name>
+
+  <app-ag-grid-table
+    style="width: 100%; height: 400px;"
+    class="ag-theme-alpine"
+    [columnDefs]="columnDefs"
+    [rowData]="rowData"
+    (rowSelected)="onRowSelected($event)"
+    >
+  </app-ag-grid-table>
+
+  <div *ngIf="selectedRow" style="margin-top: 20px;">
+    <mat-tab-group>
+      <!-- Pestaña de Información -->
+      <mat-tab label="Información">
+        <form *ngIf="selectedRow" class="form-grid" (ngSubmit)="updateProjectInfo()">
+
+          <!-- Project ID (readonly) -->
+          <div class="form-field">
+            <label for="project_id">Project ID:</label>
+            <input id="project_id" name="project_id" [(ngModel)]="selectedRow.project_id" readonly />
+          </div>
+
+          <!-- Project Name -->
+          <div class="form-field">
+            <label for="project_name">Project Name:</label>
+            <input
+              id="project_name"
+              name="project_name"
+              [(ngModel)]="selectedRow.project_name"
+              required
+            />
+          </div>
+
+          <!-- Project Budget -->
+          <div class="form-field">
+            <label for="project_budget">Project Budget:</label>
+            <input
+              id="project_budget"
+              name="project_budget"
+              [(ngModel)]="selectedRow.project_budget"
+              type="number"
+              step="0.01"
+              required
+            />
+          </div>
+
+          <!-- Project Client -->
+          <div class="form-field">
+            <label for="project_client">Project Client:</label>
+            <input
+              id="project_client"
+              name="project_client"
+              [(ngModel)]="selectedRow.project_client"
+              required
+            />
+          </div>
+
+          <!-- Project Responsible -->
+          <div class="form-field">
+            <label for="project_responsible">Project Responsible:</label>
+            <input
+              id="project_responsible"
+              name="project_responsible"
+              [(ngModel)]="selectedRow.project_responsible"
+              type="number"
+              required
+            />
+          </div>
+
+          <!-- Botones de Actualizar y Eliminar -->
+          <div class="form-field form-actions">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="!selectedRow.project_name || !selectedRow.project_budget || !selectedRow.project_client"
+            >
+              Actualizar
+            </button>
+            <button mat-raised-button color="warn" (click)="deleteProject()">Eliminar</button>
+          </div>
+        </form>
+      </mat-tab>
+
+      <!-- Pestaña de Más Información -->
+      <mat-tab label="Más Información">
+        <p>Más detalles o funcionalidades adicionales pueden ir aquí</p>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+</div>

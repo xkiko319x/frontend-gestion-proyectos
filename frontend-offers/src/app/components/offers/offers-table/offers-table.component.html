@@ -1,0 +1,106 @@
+<div class="content" style="width: 100%; height: 100%;">
+  <app-component-name title="Offers" buttonLabel="Añadir Offer" (buttonClick)="openModal()"></app-component-name>
+  <app-ag-grid-table
+    style="width: 100%; height: 400px;"
+    class="ag-theme-alpine"
+    [columnDefs]="columnDefs"
+    [rowData]="rowData"
+    (rowSelected)="onRowSelected($event)"
+    >
+  </app-ag-grid-table>
+
+  <div *ngIf="selectedRow" style="margin-top: 20px;">
+    <mat-tab-group>
+      <!-- Tab de Información -->
+      <mat-tab label="Información">
+        <form *ngIf="selectedRow" class="form-grid" (ngSubmit)="updateOfferInfo()">
+          <!-- Offer ID (readonly) -->
+          <div class="form-field">
+            <label for="offer_id">Offer ID:</label>
+            <input id="offer_id" name="offer_id" [(ngModel)]="selectedRow.offer_id" readonly />
+          </div>
+
+          <!-- Offer Title -->
+          <div class="form-field">
+            <label for="offer_title">Offer Title:</label>
+            <input id="offer_title" name="offer_title" [(ngModel)]="selectedRow.offer_title" required />
+          </div>
+
+          <!-- Offer Amount -->
+          <div class="form-field">
+            <label for="offer_amount">Offer Amount:</label>
+            <input
+              id="offer_amount"
+              name="offer_amount"
+              [(ngModel)]="selectedRow.offer_amount"
+              type="number"
+              step="0.01"
+              required
+            />
+          </div>
+
+          <!-- Offer Client -->
+          <div class="form-field">
+            <label for="offer_client">Offer Client:</label>
+            <input id="offer_client" name="offer_client" [(ngModel)]="selectedRow.offer_client" type="number" required />
+          </div>
+
+          <!-- Offer Client Company -->
+          <div class="form-field">
+            <label for="offer_client_company">Client Company:</label>
+            <input
+              id="offer_client_company"
+              name="offer_client_company"
+              [(ngModel)]="selectedRow.offer_client_company"
+              required
+            />
+          </div>
+
+          <!-- Offer Reference -->
+          <div class="form-field">
+            <label for="offer_reference">Offer Reference:</label>
+            <input id="offer_reference" name="offer_reference" [(ngModel)]="selectedRow.offer_reference" required />
+          </div>
+
+          <!-- Offer Project -->
+          <div class="form-field">
+            <label for="offer_project">Offer Project:</label>
+            <input id="offer_project" name="offer_project" [(ngModel)]="selectedRow.offer_project" type="number" required />
+          </div>
+
+          <!-- Offer Responsible -->
+          <div class="form-field">
+            <label for="offer_responsible">Offer Responsible:</label>
+            <input
+              id="offer_responsible"
+              name="offer_responsible"
+              [(ngModel)]="selectedRow.offer_responsible"
+              type="number"
+              required
+            />
+          </div>
+
+          <!-- Botones de Actualizar y Eliminar -->
+          <div class="form-field form-actions">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="!selectedRow.offer_title || !selectedRow.offer_amount || !selectedRow.offer_client"
+            >
+              Actualizar
+            </button>
+            <button mat-raised-button color="warn" (click)="deleteOffer()">Eliminar</button>
+          </div>
+        </form>
+      </mat-tab>
+
+      <!-- Tab de Más Información -->
+      <mat-tab label="Más Información">
+        <p>mas info a implementar</p>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+
+</div>

@@ -16,9 +16,8 @@ export class CompanyService {
   getCompanies(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
-  createCompany(data:any): Observable<any> {
-    console.log(data);
 
+  createCompany(data:any): Observable<any> {
     return this.http.post(this.apiUrl, data);
   }
 

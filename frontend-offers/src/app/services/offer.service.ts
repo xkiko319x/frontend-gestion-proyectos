@@ -6,12 +6,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OfferService {
-  // private apiUrl = 'http://127.0.0.1:8000/api/offer/'; // Asegúrate de que esta URL es correcta
-
   constructor(private http: HttpClient) {}
+  apiUrl = 'https://backend-gestion-proyectos-jnz9.onrender.com/api/offers/'
 
   getOffers(): Observable<any> {
-    const apiUrl = 'http://127.0.0.1:8000/api/offers/';
-    return this.http.get(apiUrl);
+    return this.http.get(this.apiUrl);
+  }
+
+  createOffer(data:any): Observable<any> {
+    return this.http.post(this.apiUrl, data);
+  }
+
+  updateOffer(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}${id}/`, data);
+  }
+
+  deleteOffer(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}${id}/`);
   }
 }

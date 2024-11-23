@@ -6,13 +6,15 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AgGridTableComponent } from './ag-grid-table/ag-grid-table.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { ComponentNameComponent } from './component-name/component-name.component';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    AgGridTableComponent
+    AgGridTableComponent,
+    ComponentNameComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,7 @@ import { AgGridModule } from 'ag-grid-angular';
     HttpClientModule,
     NavbarComponent,
     AgGridTableComponent,
+    ComponentNameComponent
   ]
 })
 export class SharedModule { }
