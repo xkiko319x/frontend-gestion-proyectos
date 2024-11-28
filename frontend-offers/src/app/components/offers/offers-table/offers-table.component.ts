@@ -14,13 +14,13 @@ export class OffersTableComponent implements OnInit {
 
   constructor(private _offerService: OfferService,  private dialog: MatDialog) { }
   columnDefs = [
-    { headerName: 'Id', field: 'offer_id' },
-    { headerName: 'Client Company', field: 'offer_client_company' },
-    { headerName: 'offer_title', field: 'offer_title' },
-    { headerName: 'offer_responsible', field: 'offer_responsible' },
-    { headerName: 'offer_reference', field: 'offer_reference' },
-    { headerName: 'offer_client', field: 'offer_client' },
-    { headerName: 'offer_amount', field: 'offer_amount' },
+    { headerName: 'Id', field: 'offer_id', flex:1, hide:true },
+    { headerName: 'Client Company', field: 'offer_client_company', flex:1 },
+    { headerName: 'offer_title', field: 'offer_title', flex:1 },
+    { headerName: 'offer_responsible', field: 'offer_responsible', flex:1 },
+    { headerName: 'offer_reference', field: 'offer_reference', flex:1 },
+    { headerName: 'offer_client', field: 'offer_client', flex:1 },
+    { headerName: 'offer_amount', field: 'offer_amount', flex:1 },
   ];
 
   ngOnInit() {
@@ -55,9 +55,6 @@ export class OffersTableComponent implements OnInit {
         offer_reference: '',
         offer_project: '',
       },
-      // Asegura que el modal se centre en la pantalla
-      position: { top: '50%', left: '50%' },
-      // El transform se maneja automáticamente para centrar el modal
       panelClass: 'centered-modal'
     });
 

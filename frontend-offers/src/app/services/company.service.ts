@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 export class CompanyService {
 
   constructor(private http: HttpClient) {}
-  apiUrl = 'https://backend-gestion-proyectos-jnz9.onrender.com/api/companies/'
+  // apiUrl = 'https://backend-gestion-proyectos-jnz9.onrender.com/api/companies/'
 
   // localhost
-  // apiUrl = 'http://127.0.0.1:8000/api/companies/'
+  apiUrl = 'http://127.0.0.1:8000/api/companies/'
 
   getCompanies(): Observable<any> {
     return this.http.get(this.apiUrl);

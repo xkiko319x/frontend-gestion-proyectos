@@ -1,7 +1,15 @@
-/* src/app/shared/navbar/navbar.component.scss */
+/* src/app/shared/navtab/navtab.component.scss */
 nav {
+  display: flex; /* Usamos flexbox para organizar los elementos */
+  justify-content: space-between; /* Los elementos se distribuyen a lo largo del contenedor */
+  align-items: center; /* Alinea los elementos al centro verticalmente */
   background-color: #333;
   padding: 1rem;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center; /* Asegura que los botones estén centrados verticalmente */
 }
 
 button {
@@ -22,4 +30,33 @@ button:hover {
 
 button:focus {
   outline: none; /* Elimina el contorno al hacer clic */
+}
+
+/* Asegúrate de que el botón de logout se alinee a la derecha y tenga el mismo tamaño */
+.logout-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: auto; /* Empuja el botón de logout a la derecha */
+}
+
+.logout-button:hover {
+  background-color: #0056b3; /* Color al pasar el mouse */
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el username y el botón de logout */
+}
+
+.user {
+  color: white; /* Hace que el texto del username sea blanco */
+  font-size: 16px;
+  font-weight: bold;
 }

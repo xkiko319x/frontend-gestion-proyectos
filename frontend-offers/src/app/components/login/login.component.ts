@@ -19,15 +19,16 @@ export class LoginComponent {
   onLogin(): void {
     this._authService.login(this.username, this.password).subscribe(
       response => {
-        this.message = response.message;
         console.log('Inicio de sesión exitoso!', response);
-        // Aquí puedes redirigir a la página deseada después del inicio de sesión
-        this.router.navigate(['/offers']); // Cambia '/dashboard' a la ruta que desees
+
+        // Puedes agregar mensajes de éxito o redirecciones aquí
+        this.router.navigate(['/offers']); // Cambia '/offers' según sea necesario
       },
       error => {
-        this.message = error.error.message; // Manejo de errores
-        console.log('Error en inicio de sesión', error);
+        this.message = 'Error en inicio de sesión: ' + error.error.message; // Mensaje de error
+        console.error('Error en inicio de sesión', error);
       }
     );
   }
+
 }

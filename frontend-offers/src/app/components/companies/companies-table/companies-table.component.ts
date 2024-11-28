@@ -17,10 +17,10 @@ export class CompaniesTableComponent implements OnInit {
   ) { }
 
   columnDefs = [
-    { headerName: 'Company ID', field: 'company_id' },
-    { headerName: 'Company Name', field: 'company_name' },
-    { headerName: 'Company Address', field: 'company_address' },
-    { headerName: 'Company Reference', field: 'company_reference' }
+    { headerName: 'Company ID', field: 'company_id', flex:1, hide:true },
+    { headerName: 'Company Name', field: 'company_name', flex:1 },
+    { headerName: 'Company Address', field: 'company_address', flex:1 },
+    { headerName: 'Company Reference', field: 'company_reference', flex:1 }
   ];
 
   ngOnInit() {
@@ -44,17 +44,7 @@ export class CompaniesTableComponent implements OnInit {
 
   openModal(): void {
     const dialogRef = this.dialog.open(CompaniesModalComponent, {
-      width: '800px',    // Establece el tamaño del modal
-      height: '600px',   // Establece la altura del modal
-      data: {
-        company_name: '',
-        company_address: '',
-        company_reference: ''
-      },
-      // Asegura que el modal se centre en la pantalla
-      position: { top: '50%', left: '50%' },
-      // El transform se maneja automáticamente para centrar el modal
-      panelClass: 'centered-modal'
+      width: '800px',
     });
 
     // Lógica después de que el modal se cierre

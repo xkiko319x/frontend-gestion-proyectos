@@ -1,40 +1,7 @@
-<!-- <div class="content" style="width: 100%; height: 100%;">
-  <app-ag-grid-table
-    style="width: 100%; height: 400px;"
-    class="ag-theme-alpine"
-    [columnDefs]="columnDefs"
-    [rowData]="rowData"
-    (rowSelected)="onRowSelected($event)"
-    >
-  </app-ag-grid-table>
-
-  <div *ngIf="selectedRow" style="margin-top: 20px;">
-    <mat-tab-group>
-      <mat-tab label="Información">
-        <form *ngIf="selectedRow">
-          <div>
-            <label for="company">Company name:</label>
-            <input id="company" name="company" [(ngModel)]="selectedRow.company_name" />
-          </div>
-          <div>
-            <label for="country">Country:</label>
-            <input id="country" name="country" [(ngModel)]="selectedRow.country" />
-          </div>
-          <div>
-            <label for="industry">Industry:</label>
-            <input id="industry" name="industry" [(ngModel)]="selectedRow.industry" />
-          </div>
-        </form>
-      </mat-tab>
-      <mat-tab label="Other Tab">
-        <p>Otra información puede ir aquí...</p>
-      </mat-tab>
-    </mat-tab-group>
-  </div>
-</div> -->
+<app-navbar></app-navbar>  <!-- Barra de navegación -->
 
 <div class="content" style="width: 100%; height: 100%;">
-  <app-component-name title="Companies"></app-component-name>
+  <app-component-name title="Companies"  buttonLabel="Añadir Empresa" (buttonClick)="openModal()"></app-component-name>
 
   <app-ag-grid-table
     style="width: 100%; height: 400px;"

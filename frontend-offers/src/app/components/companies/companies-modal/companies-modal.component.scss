@@ -1,49 +1,58 @@
-/* Estilo para el modal */
-.mat-dialog-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
+.full-width {
+  width: 100%;
 }
 
-.close-button {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-mat-dialog-content {
-  max-height: 400px;
-  overflow: auto;
-}
-
-mat-dialog-actions {
+.actions {
   display: flex;
   justify-content: flex-end;
-  padding: 16px;
+  gap: 10px;
 }
+// /* Estilo para el modal */
+// .mat-dialog-title {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   position: relative;
+// }
 
-mat-form-field {
-  width: 100%;
-  margin-bottom: 16px;
-}
+// .close-button {
+//   position: absolute;
+//   top: 8px;
+//   right: 8px;
+//   background: transparent;
+//   border: none;
+//   cursor: pointer;
+// }
 
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
+// mat-dialog-content {
+//   max-height: 400px;
+//   overflow: auto;
+// }
 
-.mat-dialog-container {
-  padding: 20px;  // Puedes ajustar el padding según lo necesites
-}
+// mat-dialog-actions {
+//   display: flex;
+//   justify-content: flex-end;
+//   padding: 16px;
+// }
 
-.centered-modal .mat-dialog-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;  /* Asegura que no haya márgenes que afecten el posicionamiento */
-}
+// mat-form-field {
+//   width: 100%;
+//   margin-bottom: 16px;
+// }
+
+// .close-button {
+//   position: absolute;
+//   top: 10px;
+//   right: 10px;
+// }
+
+// .mat-dialog-container {
+//   padding: 20px;  // Puedes ajustar el padding según lo necesites
+// }
+
+// .centered-modal .mat-dialog-container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 0;  /* Asegura que no haya márgenes que afecten el posicionamiento */
+// }

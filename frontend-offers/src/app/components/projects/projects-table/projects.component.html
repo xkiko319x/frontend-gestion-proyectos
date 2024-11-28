@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>  <!-- Barra de navegación -->
 
 <div class="content" style="width: 100%; height: 100%;">
   <app-component-name title="Projects" buttonLabel="Añadir Proyecto" (buttonClick)="openModal()"></app-component-name>
@@ -11,10 +12,11 @@
     >
   </app-ag-grid-table>
 
-  <div *ngIf="selectedRow" style="margin-top: 20px;">
-    <mat-tab-group>
+  <div *ngIf="selectedRow" style="margin-top: 20px; padding: 10px;">
+    <mat-tab-group mat-aling-tabs="start" class="mx-5 alternate-theme">
       <!-- Pestaña de Información -->
       <mat-tab label="Información">
+        <div style="border: 2px; padding: 16px; margin-bottom: 16px;">
         <form *ngIf="selectedRow" class="form-grid" (ngSubmit)="updateProjectInfo()">
 
           <!-- Project ID (readonly) -->
@@ -83,6 +85,7 @@
             <button mat-raised-button color="warn" (click)="deleteProject()">Eliminar</button>
           </div>
         </form>
+      </div>
       </mat-tab>
 
       <!-- Pestaña de Más Información -->

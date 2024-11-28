@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AgGridTableComponent } from './ag-grid-table/ag-grid-table.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ComponentNameComponent } from './component-name/component-name.component';
+import { MatIcon } from '@angular/material/icon';
 
 
 
@@ -22,6 +23,7 @@ import { ComponentNameComponent } from './component-name/component-name.componen
     HttpClientModule,
     RouterModule,
     AgGridModule,
+    MatIcon
   ],
   exports: [
     CommonModule,

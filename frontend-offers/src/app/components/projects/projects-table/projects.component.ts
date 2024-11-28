@@ -15,11 +15,11 @@ export class ProjectsTableComponent implements OnInit {
   constructor(private _projectService: ProjectService, private dialog: MatDialog) { }
 
   columnDefs = [
-    { headerName: 'Project ID', field: 'projects_id' },
+    { headerName: 'Project ID', field: 'projects_id',flex:1, hide: true },
     { headerName: 'Project Name', field: 'project_name' },
-    { headerName: 'Project Responsible ID', field: 'project_responsible_id' },
-    { headerName: 'Project Client', field: 'project_client' },
-    { headerName: 'Project Budget', field: 'project_budget' }
+    { headerName: 'Project Responsible ID', field: 'project_responsible_id',flex:1 },
+    { headerName: 'Project Client', field: 'project_client', flex:1 },
+    { headerName: 'Project Budget', field: 'project_budget', flex:1 }
   ];
 
   ngOnInit() {
