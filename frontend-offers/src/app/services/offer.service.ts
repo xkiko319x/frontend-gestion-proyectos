@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class OfferService {
   constructor(private http: HttpClient) {}
   // apiUrl = 'https://backend-gestion-proyectos-jnz9.onrender.com/api/offers/'
-  apiUrl = 'http://127.0.0.1/api/offers/'
+  apiUrl = 'http://127.0.0.1:8000/api/offers/'
 
   getOffers(): Observable<any> {
     return this.http.get(this.apiUrl);

@@ -1,10 +1,27 @@
-<!-- src/app/shared/navtab/navtab.component.html -->
+<!-- src/app/shared/navtab/navtab.component.html
 <nav>
   <div class="nav-buttons">
     <button routerLink="/offers" routerLinkActive="active">Offers</button>
     <button routerLink="/companies" routerLinkActive="active">Companies</button>
     <button routerLink="/projects" routerLinkActive="active">Projects</button>
   </div>
+  <div class="user-container">
+    <span class="user">Usuario: {{ username }} ({{ rol }})</span>
+    <button mat-icon-button (click)="logout()" class="logout-button">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+</nav> -->
+
+<nav>
+  <div class="nav-buttons">
+    <button *ngIf="roleService.canViewOffers()" routerLink="/offers" routerLinkActive="active">Offers</button>
+    <button *ngIf="roleService.canViewCompanies()" routerLink="/companies" routerLinkActive="active">Companies</button>
+    <button *ngIf="roleService.canViewProjects()" routerLink="/projects" routerLinkActive="active">Projects</button>
+    <button *ngIf="roleService.canViewOffers()" routerLink="/clients" routerLinkActive="active">Clients</button>
+    <button *ngIf="roleService.canViewProjects()" routerLink="/responsibles" routerLinkActive="active">Responsibles</button>
+  </div>
+
   <div class="user-container">
     <span class="user">Usuario: {{ username }} ({{ rol }})</span>
     <button mat-icon-button (click)="logout()" class="logout-button">

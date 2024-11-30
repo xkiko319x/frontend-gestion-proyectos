@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../../../services/company.service';
 import { MatDialog } from '@angular/material/dialog';
-import {CompaniesModalComponent} from '../companies-modal/companies-modal.component'
+import { CompaniesModalComponent } from '../companies-modal/companies-modal.component';
 
 @Component({
   selector: 'app-companies-table',
@@ -9,48 +9,52 @@ import {CompaniesModalComponent} from '../companies-modal/companies-modal.compon
   styleUrls: ['./companies-table.component.scss']
 })
 export class CompaniesTableComponent implements OnInit {
-  rowData: any[] = []
+  rowData: any[] = [];
   selectedRow: any = null;
 
-  constructor(private _companiesService: CompanyService,
-    private dialog: MatDialog
-  ) { }
+  constructor(private _companyService: CompanyService, private dialog: MatDialog) {}
 
   columnDefs = [
-    { headerName: 'Company ID', field: 'company_id', flex:1, hide:true },
-    { headerName: 'Company Name', field: 'company_name', flex:1 },
-    { headerName: 'Company Address', field: 'company_address', flex:1 },
-    { headerName: 'Company Reference', field: 'company_reference', flex:1 }
+    { headerName: 'ID', field: 'company_id', flex: 1, hide: true },
+    { headerName: 'Nombre', field: 'company_name', flex: 1 },
+    { headerName: 'Dirección', field: 'company_address', flex: 1 },
+    { headerName: 'Referencia', field: 'company_reference', flex: 1 },
   ];
 
   ngOnInit() {
-    this._companiesService.getCompanies().subscribe({
-      next: (value) => {  // Usamos función flecha para mantener el contexto de `this`
+    this._companyService.getCompanies().subscribe({
+      next: (value) => {
         console.log(value);
         this.rowData = value;
       },
       error: (err) => {
-        console.error("Error fetching offers:", err);
+        console.error('Error fetching companies:', err);
       }
     });
   }
 
   onRowSelected(event: any) {
-    // Al seleccionar una fila, asignamos la fila seleccionada a `selectedRow`
     if (event.node.selected) {
       this.selectedRow = event.data;
+      console.log(this.selectedRow);
     }
   }
 
   openModal(): void {
     const dialogRef = this.dialog.open(CompaniesModalComponent, {
       width: '800px',
+      height: '600px',
+      data: {
+        company_name: '',
+        company_address: '',
+        company_reference: '',
+      },
+      panelClass: 'centered-modal'
     });
 
-    // Lógica después de que el modal se cierre
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Resultado del modal:', result);
+        console.log('Modal result:', result);
         this.createCompany(result);
       }
     });
@@ -58,41 +62,38 @@ export class CompaniesTableComponent implements OnInit {
 
   updateCompanyInfo() {
     if (this.selectedRow) {
-      this._companiesService.updateCompany(this.selectedRow.company_id, this.selectedRow).subscribe({
+      this._companyService.updateCompany(this.selectedRow.company_id, this.selectedRow).subscribe({
         next: (value) => {
-          console.log('Empresa actualizada', value);
+          console.log('Company updated:', value);
         },
         error: (error) => {
-          console.error('Error al actualizar la empresa', error);
-
+          console.error('Error updating company:', error);
         }
       });
     }
   }
 
-
-  // Método para eliminar la empresa
   deleteCompany() {
     if (this.selectedRow && this.selectedRow.company_id) {
-      this._companiesService.deleteCompany(this.selectedRow.company_id).subscribe({
+      this._companyService.deleteCompany(this.selectedRow.company_id).subscribe({
         next: (value) => {
-          console.log('Empresa eliminada', value);
+          console.log('Company deleted:', value);
         },
         error: (error) => {
-          console.error('Error al eliminar la empresa', error);
+          console.error('Error deleting company:', error);
         }
       });
     }
   }
 
-
-  createCompany(data:any){
-    this._companiesService.createCompany(data).subscribe({
+  createCompany(data: any) {
+    this._companyService.createCompany(data).subscribe({
       next(value) {
-        console.log(value)
+        console.log('Company created:', value);
       },
-    })
+      error(error) {
+        console.error('Error creating company:', error);
+      }
+    });
   }
-
-
 }

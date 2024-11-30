@@ -46,8 +46,8 @@ export class OffersTableComponent implements OnInit {
 
   openModal(): void {
     const dialogRef = this.dialog.open(OffersModalComponent, {
-      width: '800px',    // Establece el tamaño del modal
-      height: '600px',   // Establece la altura del modal
+      width: '800px',
+      height: '600px',
       data: {
         offer_title: '',
         offer_amount: '',

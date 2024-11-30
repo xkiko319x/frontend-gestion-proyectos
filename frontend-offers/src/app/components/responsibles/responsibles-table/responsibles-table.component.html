@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>  <!-- Barra de navegación -->
+
+<div class="content" style="width: 100%; height: 100%;">
+  <app-component-name title="Responsible" buttonLabel="Add Responsible" (buttonClick)="openModal()"></app-component-name>
+
+  <!-- Tabla de Responsables -->
+  <app-ag-grid-table
+    style="width: 100%; height: 400px;"
+    class="ag-theme-alpine"
+    [columnDefs]="columnDefs"
+    [rowData]="rowData"
+    (rowSelected)="onRowSelected($event)">
+  </app-ag-grid-table>
+
+  <!-- Si hay un responsable seleccionado -->
+  <div *ngIf="selectedRow" style="margin-top: 20px;">
+    <mat-tab-group>
+      <!-- Tab de Información -->
+      <mat-tab label="Información">
+        <form *ngIf="selectedRow" class="form-grid" (ngSubmit)="updateResponsibleInfo()">
+          <!-- Responsable ID (readonly) -->
+          <div class="form-field">
+            <label for="responsible_id">Responsable ID:</label>
+            <input id="responsible_id" name="responsible_id" [(ngModel)]="selectedRow.responsible_id" readonly />
+          </div>
+
+          <!-- Nombre del Responsable -->
+          <div class="form-field">
+            <label for="responsible_name">Nombre:</label>
+            <input id="responsible_name" name="responsible_name" [(ngModel)]="selectedRow.responsible_name" required />
+          </div>
+
+          <!-- Username del Responsable -->
+          <div class="form-field">
+            <label for="responsible_username">Username:</label>
+            <input id="responsible_username" name="responsible_username" [(ngModel)]="selectedRow.responsible_username" required />
+          </div>
+
+          <!-- Botones de Actualizar y Eliminar -->
+          <div class="form-field form-actions">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="!selectedRow.responsible_name || !selectedRow.responsible_username"
+            >
+              Actualizar
+            </button>
+            <button mat-raised-button color="warn" (click)="deleteResponsible()">Eliminar</button>
+          </div>
+        </form>
+      </mat-tab>
+
+      <!-- Tab de Más Información -->
+      <mat-tab label="Más Información">
+        <p>Más información a implementar</p>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

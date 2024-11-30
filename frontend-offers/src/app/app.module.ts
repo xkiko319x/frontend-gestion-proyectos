@@ -16,6 +16,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { OffersModule } from './components/offers/offers.module';
 import { ProjectsModule } from './components/projects/projects.module';
+import { MatSelectModule } from '@angular/material/select';
+import { ClientsModule } from './components/clients/clients.module';
+import { ResponsiblesModule } from './components/responsibles/responsibles.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,8 @@ import { ProjectsModule } from './components/projects/projects.module';
     CompaniesModule,
     OffersModule,
     ProjectsModule,
+    ClientsModule,
+    ResponsiblesModule,
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -36,7 +41,8 @@ import { ProjectsModule } from './components/projects/projects.module';
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   bootstrap: [AppComponent]
 })

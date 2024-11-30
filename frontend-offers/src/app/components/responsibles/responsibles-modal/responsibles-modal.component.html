@@ -1,25 +1,28 @@
 <h2 mat-dialog-title class="dialog-header">
-  Add Company Form
+  Add Responsible Form
   <button mat-icon-button (click)="onClose()" class="close-button" aria-label="Close">
     <mat-icon>close</mat-icon>
   </button>
 </h2>
 
 <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form-container">
-  <mat-dialog-content>
+  <mat-dialog-content class="content-container">
+    <!-- Responsible User ID -->
     <mat-form-field appearance="fill" class="form-field">
-      <mat-label>Nombre de la Empresa</mat-label>
-      <input matInput formControlName="company_name" required />
+      <mat-label>ID del Usuario Responsable</mat-label>
+      <input matInput formControlName="responsible_user_id" type="number" required />
     </mat-form-field>
 
+    <!-- Responsible Name -->
     <mat-form-field appearance="fill" class="form-field">
-      <mat-label>Dirección</mat-label>
-      <input matInput formControlName="company_address" required />
+      <mat-label>Nombre del Responsable</mat-label>
+      <input matInput formControlName="responsible_name" required />
     </mat-form-field>
 
+    <!-- Responsible Username -->
     <mat-form-field appearance="fill" class="form-field">
-      <mat-label>Referencia</mat-label>
-      <input matInput formControlName="company_reference" required />
+      <mat-label>Username del Responsable</mat-label>
+      <input matInput formControlName="responsible_username" required />
     </mat-form-field>
   </mat-dialog-content>
 

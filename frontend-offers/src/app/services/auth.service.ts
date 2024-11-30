@@ -39,8 +39,9 @@ export class AuthService {
     localStorage.clear(); // Limpia el storage al cerrar sesión
     this.router.navigate(['/login']);
   }
-
-  getAccessToken(): string | null {
-    return localStorage.getItem('access_token');
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('access_token');
+    // Verifica si existe un token
+    return !!token;
   }
 }

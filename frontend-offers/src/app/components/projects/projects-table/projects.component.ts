@@ -54,9 +54,6 @@ export class ProjectsTableComponent implements OnInit {
         offer_reference: '',
         offer_project: '',
       },
-      // Asegura que el modal se centre en la pantalla
-      position: { top: '50%', left: '50%' },
-      // El transform se maneja automáticamente para centrar el modal
       panelClass: 'centered-modal'
     });
 
@@ -71,7 +68,7 @@ export class ProjectsTableComponent implements OnInit {
 
   updateProjectInfo() {
     if (this.selectedRow) {
-      this._projectService.updateProject(this.selectedRow.of_ia_id, this.selectedRow).subscribe({
+      this._projectService.updateProject(this.selectedRow.project_id, this.selectedRow).subscribe({
         next: (value) => {
           console.log('Empresa actualizada', value);
         },
@@ -86,8 +83,8 @@ export class ProjectsTableComponent implements OnInit {
 
   // Método para eliminar la empresa
   deleteProject() {
-    if (this.selectedRow && this.selectedRow.of_ia_id) {
-      this._projectService.deleteProject(this.selectedRow.of_ia_id).subscribe({
+    if (this.selectedRow && this.selectedRow.project_id) {
+      this._projectService.deleteProject(this.selectedRow.project_id).subscribe({
         next: (value) => {
           console.log('offer eliminada', value);
         },

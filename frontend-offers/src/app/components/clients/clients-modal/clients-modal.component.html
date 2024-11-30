@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>
+  Formulario de Proyectos
+  <button mat-icon-button (click)="onClose()" class="close-button" aria-label="Close">
+    <mat-icon>close</mat-icon>
+  </button>
+</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="form-grid">
+    <!-- Nombre del Cliente -->
+    <div class="form-field">
+      <label for="client_name">Nombre:</label>
+      <input id="client_name" formControlName="client_name" type="text" placeholder="Nombre del cliente" required />
+    </div>
+
+    <!-- Referencia del Cliente -->
+    <div class="form-field">
+      <label for="client_reference">Referencia:</label>
+      <input id="client_reference" formControlName="client_reference" type="text" placeholder="Referencia" required />
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onClose()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="form.invalid">Guardar</button>
+</mat-dialog-actions>

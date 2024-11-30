@@ -1,23 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OffersModalComponent } from './offers-modal/offers-modal.component';
+import { ClientsTableComponent } from './clients-table/clients-table.component';
+import { ClientsModalComponent } from './clients-modal/clients-modal.component';
 import { SharedModule } from '../../shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OffersTableComponent } from './offers-table/offers-table.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-
 
 @NgModule({
   declarations: [
-    OffersModalComponent,
-    OffersTableComponent
+    ClientsTableComponent,
+    ClientsModalComponent
   ],
   imports: [
     CommonModule,
@@ -35,9 +34,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule
   ],
   exports: [
-    OffersModalComponent,
-    OffersTableComponent,
+    ClientsTableComponent,
+    ClientsModalComponent
   ]
 })
-
-export class OffersModule { }
+export class ClientsModule { }
