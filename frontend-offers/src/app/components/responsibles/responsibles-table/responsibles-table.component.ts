@@ -22,6 +22,10 @@ export class ResponsiblesTableComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.getData()
+  }
+
+  getData(){
     this._responsibleService.getResponsibles().subscribe({
       next: (value) => {
         console.log(value);
@@ -65,6 +69,8 @@ export class ResponsiblesTableComponent implements OnInit {
       this._responsibleService.updateResponsible(this.selectedRow.responsible_id, this.selectedRow).subscribe({
         next: (value) => {
           console.log('Responsable actualizado', value);
+          this.getData()
+          this.selectedRow = null
         },
         error: (error) => {
           console.error('Error al actualizar el responsable', error);
@@ -78,6 +84,8 @@ export class ResponsiblesTableComponent implements OnInit {
       this._responsibleService.deleteResponsible(this.selectedRow.responsible_id).subscribe({
         next: (value) => {
           console.log('Responsable eliminado', value);
+          this.getData()
+          this.selectedRow = null
         },
         error: (error) => {
           console.error('Error al eliminar el responsable', error);
@@ -87,9 +95,11 @@ export class ResponsiblesTableComponent implements OnInit {
   }
 
   createResponsible(data: any) {
+    const that = this
     this._responsibleService.createResponsible(data).subscribe({
       next(value) {
         console.log(value);
+        that.getData()
       },
     });
   }

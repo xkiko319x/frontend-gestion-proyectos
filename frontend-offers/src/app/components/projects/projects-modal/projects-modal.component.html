@@ -7,7 +7,7 @@
 
 <form (ngSubmit)="onSubmit()" [formGroup]="form" style="height: auto;">
   <mat-dialog-content>
-    <!-- Project Name -->
+    <!-- Nombre del Proyecto -->
     <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
       <mat-label>Nombre del Proyecto</mat-label>
       <input
@@ -18,7 +18,7 @@
       />
     </mat-form-field>
 
-    <!-- Project Budget -->
+    <!-- Presupuesto -->
     <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
       <mat-label>Presupuesto</mat-label>
       <input
@@ -31,27 +31,22 @@
       />
     </mat-form-field>
 
-    <!-- Project Client -->
+    <!-- Cliente (Selector) -->
     <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
       <mat-label>Cliente</mat-label>
-      <input
-        matInput
-        formControlName="project_client"
-        required
-        placeholder="Ingresa el cliente del proyecto"
-      />
+      <mat-select formControlName="project_client" required>
+        <mat-option *ngFor="let client of clientes" [value]="client.client_id">{{ client.client_name }}</mat-option>
+      </mat-select>
     </mat-form-field>
 
-    <!-- Project Responsible -->
+    <!-- Responsable (Selector) -->
     <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
-      <mat-label>Responsable del Proyecto (ID)</mat-label>
-      <input
-        matInput
-        formControlName="project_responsible"
-        type="number"
-        required
-        placeholder="Ingresa el ID del responsable"
-      />
+      <mat-label>Responsable del Proyecto</mat-label>
+      <mat-select formControlName="project_responsible" required>
+        <mat-option *ngFor="let responsible of responsables" [value]="responsible.responsible_id">
+          {{ responsible.responsible_name }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </mat-dialog-content>
 

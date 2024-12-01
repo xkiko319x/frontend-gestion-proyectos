@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ResponsibleService } from '../../../services/responsible.service';
+import { ClientService } from '../../../services/client.service';
 
 @Component({
   selector: 'app-projects-modal',
@@ -8,17 +10,18 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./projects-modal.component.scss']
 })
 export class ProjectsModalComponent implements OnInit {
-  ngOnInit(): void {
-
-  }
   form: FormGroup;
+  responsables: any[] = [];  // Lista de responsables
+  clientes: any[] = [];  // Lista de clientes
 
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ProjectsModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private responsibleService: ResponsibleService,
+    private clientService: ClientService
   ) {
-    // Inicializar el formulario con datos recibidos o valores predeterminados
+    // Inicialización del formulario
     this.form = this.fb.group({
       project_name: [data?.project_name || '', Validators.required],
       project_budget: [
@@ -33,14 +36,44 @@ export class ProjectsModalComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+    // Cargar responsables y clientes al inicializar
+    this.loadResponsibles();
+    this.loadClients();
+  }
+
+  loadResponsibles() {
+    this.responsibleService.getResponsibles().subscribe(
+      (data) => {
+        this.responsables = data;
+        console.log(data);
+      },
+      (error) => {
+        console.error('Error fetching responsibles', error);
+      }
+    );
+  }
+
+  loadClients() {
+    this.clientService.getClients().subscribe(
+      (data) => {
+        this.clientes = data;
+        console.log(data);
+      },
+      (error) => {
+        console.error('Error fetching clients', error);
+      }
+    );
+  }
+
   onSubmit() {
     if (this.form.valid) {
-      this.dialogRef.close(this.form.value); // Retorna los datos al padre
+      this.dialogRef.close(this.form.value);  // Retorna los datos al padre
     }
   }
 
   onClose() {
-    this.dialogRef.close(); // Cierra el modal sin guardar
+    this.dialogRef.close();  // Cierra el modal sin guardar
   }
 
 }

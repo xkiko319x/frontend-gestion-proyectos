@@ -10,14 +10,10 @@ import { Router } from '@angular/router';
 })
 
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/api/login/'; // Asegúrate de que esta URL es correcta
+  private apiUrl = 'http://127.0.0.1:8000/api/login/';
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  // login(username: string, password: string): Observable<any> {
-  //     const body = { username, password };
-  //     return this.http.post(this.apiUrl, body);
-  // }
   login(username: string, password: string): Observable<any> {
     return this.http.post(this.apiUrl, { username, password }).pipe(
       tap((response: any) => {
@@ -33,6 +29,10 @@ export class AuthService {
         localStorage.setItem('is_staff', response.is_staff);
       })
     );
+  }
+  getUsers(): Observable<any[]> {
+    let apiurl = 'http://127.0.0.1:8000/api/users/'
+    return this.http.get<any[]>(apiurl);
   }
 
   logout(): void {

@@ -23,6 +23,10 @@ export class ProjectsTableComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.getData()
+  }
+
+  getData(){
     this._projectService.getProjects().subscribe({
       next: (value) => {  // Usamos función flecha para mantener el contexto de `this`
         console.log(value);
@@ -33,7 +37,6 @@ export class ProjectsTableComponent implements OnInit {
       }
     });
   }
-
   onRowSelected(event: any) {
     // Al seleccionar una fila, asignamos la fila seleccionada a `selectedRow`
     if (event.node.selected) {
@@ -45,14 +48,13 @@ export class ProjectsTableComponent implements OnInit {
 
   openModal(): void {
     const dialogRef = this.dialog.open(ProjectsModalComponent, {
-      width: '800px',    // Establece el tamaño del modal
-      height: '600px',   // Establece la altura del modal
+      width: '800px',
+      height: '600px',
       data: {
-        offer_title: '',
-        offer_amount: '',
-        offer_client: '',
-        offer_reference: '',
-        offer_project: '',
+        project_name: '',
+        project_budget: '',
+        project_client: '',
+        project_responsible: ''
       },
       panelClass: 'centered-modal'
     });
@@ -71,6 +73,8 @@ export class ProjectsTableComponent implements OnInit {
       this._projectService.updateProject(this.selectedRow.project_id, this.selectedRow).subscribe({
         next: (value) => {
           console.log('Empresa actualizada', value);
+          this.getData()
+          this.selectedRow = null
         },
         error: (error) => {
           console.error('Error al actualizar la empresa', error);
@@ -87,6 +91,8 @@ export class ProjectsTableComponent implements OnInit {
       this._projectService.deleteProject(this.selectedRow.project_id).subscribe({
         next: (value) => {
           console.log('offer eliminada', value);
+          this.getData()
+          this.selectedRow = null
         },
         error: (error) => {
           console.error('Error al eliminar la offer', error);
@@ -95,15 +101,13 @@ export class ProjectsTableComponent implements OnInit {
     }
   }
 
-
   createProject(data:any){
+    const that = this
     this._projectService.createProject(data).subscribe({
       next(value) {
         console.log(value)
+        that.getData()
       },
     })
   }
-
-
-
 }

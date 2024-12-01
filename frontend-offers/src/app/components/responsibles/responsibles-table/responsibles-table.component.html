@@ -16,7 +16,7 @@
   <div *ngIf="selectedRow" style="margin-top: 20px;">
     <mat-tab-group>
       <!-- Tab de Información -->
-      <mat-tab label="Información">
+      <mat-tab label="Information">
         <form *ngIf="selectedRow" class="form-grid" (ngSubmit)="updateResponsibleInfo()">
           <!-- Responsable ID (readonly) -->
           <div class="form-field">
@@ -36,7 +36,7 @@
             <input id="responsible_username" name="responsible_username" [(ngModel)]="selectedRow.responsible_username" required />
           </div>
 
-          <!-- Botones de Actualizar y Eliminar -->
+          <!-- Botones de Update y Delete -->
           <div class="form-field form-actions">
             <button
               mat-raised-button
@@ -44,15 +44,15 @@
               type="submit"
               [disabled]="!selectedRow.responsible_name || !selectedRow.responsible_username"
             >
-              Actualizar
+              Update
             </button>
-            <button mat-raised-button color="warn" (click)="deleteResponsible()">Eliminar</button>
+            <button mat-raised-button color="warn" (click)="deleteResponsible()">Delete</button>
           </div>
         </form>
       </mat-tab>
 
       <!-- Tab de Más Información -->
-      <mat-tab label="Más Información">
+      <mat-tab label="More Information">
         <p>Más información a implementar</p>
       </mat-tab>
     </mat-tab-group>

@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>  <!-- Barra de navegación -->
 
 <div class="content" style="width: 100%; height: 100%;">
-  <app-component-name title="Offers" buttonLabel="Añadir Offer" (buttonClick)="openModal()"></app-component-name>
+  <app-component-name title="Offers" buttonLabel="Add Offer" (buttonClick)="openModal()"></app-component-name>
   <app-ag-grid-table
     style="width: 100%; height: 400px;"
     class="ag-theme-alpine"
@@ -14,7 +14,7 @@
   <div *ngIf="selectedRow" style="margin-top: 20px;">
     <mat-tab-group>
       <!-- Tab de Información -->
-      <mat-tab label="Información">
+      <mat-tab label="Information">
         <form *ngIf="selectedRow" class="form-grid" (ngSubmit)="updateOfferInfo()">
           <!-- Offer ID (readonly) -->
           <div class="form-field">
@@ -82,7 +82,7 @@
             />
           </div>
 
-          <!-- Botones de Actualizar y Eliminar -->
+          <!-- Botones de Update y Delete -->
           <div class="form-field form-actions">
             <button
               mat-raised-button
@@ -90,15 +90,15 @@
               type="submit"
               [disabled]="!selectedRow.offer_title || !selectedRow.offer_amount || !selectedRow.offer_client"
             >
-              Actualizar
+              Update
             </button>
-            <button mat-raised-button color="warn" (click)="deleteOffer()">Eliminar</button>
+            <button mat-raised-button color="warn" (click)="deleteOffer()">Delete</button>
           </div>
         </form>
       </mat-tab>
 
       <!-- Tab de Más Información -->
-      <mat-tab label="Más Información">
+      <mat-tab label="More Information">
         <p>mas info a implementar</p>
       </mat-tab>
     </mat-tab-group>

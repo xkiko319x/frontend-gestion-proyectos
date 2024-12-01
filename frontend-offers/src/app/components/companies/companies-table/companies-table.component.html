@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>  <!-- Barra de navegación -->
 
 <div class="content" style="width: 100%; height: 100%;">
-  <app-component-name title="Companies"  buttonLabel="Añadir Empresa" (buttonClick)="openModal()"></app-component-name>
+  <app-component-name title="Companies"  buttonLabel="Add Company" (buttonClick)="openModal()"></app-component-name>
 
   <app-ag-grid-table
     style="width: 100%; height: 400px;"
@@ -14,12 +14,8 @@
 
   <div *ngIf="selectedRow" style="margin-top: 20px;">
     <mat-tab-group>
-      <mat-tab label="Información">
+      <mat-tab label="Information">
         <form *ngIf="selectedRow" class="form-grid" (ngSubmit)="updateCompanyInfo()">
-          <div class="form-field">
-            <label for="company_id">Company ID:</label>
-            <input id="company_id" name="company_id" [(ngModel)]="selectedRow.company_id" readonly />
-          </div>
           <div class="form-field">
             <label for="company_name">Company Name:</label>
             <input id="company_name" name="company_name" [(ngModel)]="selectedRow.company_name" required />
@@ -33,16 +29,16 @@
             <input id="company_reference" name="company_reference" [(ngModel)]="selectedRow.company_reference" required />
           </div>
 
-          <!-- Botones de Actualizar y Eliminar -->
+          <!-- Botones de Update y Delete -->
           <div class="form-field form-actions">
             <button mat-raised-button color="primary" type="submit" [disabled]="!selectedRow.company_name || !selectedRow.company_address || !selectedRow.company_reference">
-              Actualizar
+              Update
             </button>
-            <button mat-raised-button color="warn" (click)="deleteCompany()">Eliminar</button>
+            <button mat-raised-button color="warn" (click)="deleteCompany()">Delete</button>
           </div>
         </form>
       </mat-tab>
-      <mat-tab label="Más Información">
+      <mat-tab label="More information">
         <p>mas info a implementar</p>
       </mat-tab>
     </mat-tab-group>

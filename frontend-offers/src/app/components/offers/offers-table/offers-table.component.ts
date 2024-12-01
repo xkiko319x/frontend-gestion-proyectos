@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OfferService } from '../../../services/offer.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OffersModalComponent } from '../offers-modal/offers-modal.component';
+import { throwMatDuplicatedDrawerError } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-offers-table',
@@ -24,6 +25,9 @@ export class OffersTableComponent implements OnInit {
   ];
 
   ngOnInit() {
+   this.getData()
+  }
+  getData(){
     this._offerService.getOffers().subscribe({
       next: (value) => {
         console.log(value);
@@ -34,7 +38,6 @@ export class OffersTableComponent implements OnInit {
       }
     });
   }
-
   onRowSelected(event: any) {
     // Al seleccionar una fila, asignamos la fila seleccionada a `selectedRow`
     if (event.node.selected) {
@@ -72,6 +75,8 @@ export class OffersTableComponent implements OnInit {
       this._offerService.updateOffer(this.selectedRow.of_ia_id, this.selectedRow).subscribe({
         next: (value) => {
           console.log('Empresa actualizada', value);
+          this.getData()
+          this.selectedRow = null
         },
         error: (error) => {
           console.error('Error al actualizar la empresa', error);
@@ -88,6 +93,8 @@ export class OffersTableComponent implements OnInit {
       this._offerService.deleteOffer(this.selectedRow.of_ia_id).subscribe({
         next: (value) => {
           console.log('offer eliminada', value);
+          this.getData()
+          this.selectedRow = null
         },
         error: (error) => {
           console.error('Error al eliminar la offer', error);
@@ -98,9 +105,11 @@ export class OffersTableComponent implements OnInit {
 
 
   createOffer(data:any){
+    const that = this
     this._offerService.createOffer(data).subscribe({
       next(value) {
         console.log(value)
+        that.getData()
       },
     })
   }

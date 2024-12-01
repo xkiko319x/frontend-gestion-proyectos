@@ -6,24 +6,27 @@
 </h2>
 
 <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form-container">
-  <mat-dialog-content class="content-container">
-    <!-- Responsible User ID -->
+  <mat-dialog-content>
+    <!-- Selector de Usuario -->
     <mat-form-field appearance="fill" class="form-field">
-      <mat-label>ID del Usuario Responsable</mat-label>
-      <input matInput formControlName="responsible_user_id" type="number" required />
+      <mat-label>Select User</mat-label>
+      <mat-select formControlName="responsible_user" (selectionChange)="onUserSelect($event)">
+        <mat-option *ngFor="let user of users" [value]="user.id">{{ user.username }}</mat-option>
+      </mat-select>
     </mat-form-field>
 
-    <!-- Responsible Name -->
+    <!-- Nombre del Responsable, deshabilitado -->
     <mat-form-field appearance="fill" class="form-field">
-      <mat-label>Nombre del Responsable</mat-label>
-      <input matInput formControlName="responsible_name" required />
+      <mat-label>Responsible Name</mat-label>
+      <input matInput formControlName="responsible_name" [value]="responsibleName" [disabled]="true" />
     </mat-form-field>
 
-    <!-- Responsible Username -->
+    <!-- Nombre de Usuario, deshabilitado -->
     <mat-form-field appearance="fill" class="form-field">
-      <mat-label>Username del Responsable</mat-label>
-      <input matInput formControlName="responsible_username" required />
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="responsible_username" [value]="responsibleUsername" [disabled]="true" />
     </mat-form-field>
+
   </mat-dialog-content>
 
   <mat-dialog-actions class="button-container">

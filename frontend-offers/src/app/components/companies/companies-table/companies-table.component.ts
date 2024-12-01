@@ -3,6 +3,7 @@ import { CompanyService } from '../../../services/company.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CompaniesModalComponent } from '../companies-modal/companies-modal.component';
 
+
 @Component({
   selector: 'app-companies-table',
   templateUrl: './companies-table.component.html',
@@ -16,12 +17,16 @@ export class CompaniesTableComponent implements OnInit {
 
   columnDefs = [
     { headerName: 'ID', field: 'company_id', flex: 1, hide: true },
-    { headerName: 'Nombre', field: 'company_name', flex: 1 },
-    { headerName: 'Dirección', field: 'company_address', flex: 1 },
-    { headerName: 'Referencia', field: 'company_reference', flex: 1 },
+    { headerName: 'Company Name', field: 'company_name', flex: 1 },
+    { headerName: 'Company Addres', field: 'company_address', flex: 1 },
+    { headerName: 'Reference', field: 'company_reference', flex: 1 },
   ];
 
   ngOnInit() {
+    this.getData()
+  }
+
+  getData(){
     this._companyService.getCompanies().subscribe({
       next: (value) => {
         console.log(value);
@@ -32,7 +37,6 @@ export class CompaniesTableComponent implements OnInit {
       }
     });
   }
-
   onRowSelected(event: any) {
     if (event.node.selected) {
       this.selectedRow = event.data;
@@ -65,6 +69,8 @@ export class CompaniesTableComponent implements OnInit {
       this._companyService.updateCompany(this.selectedRow.company_id, this.selectedRow).subscribe({
         next: (value) => {
           console.log('Company updated:', value);
+          this.getData()
+          this.selectedRow = null;
         },
         error: (error) => {
           console.error('Error updating company:', error);
@@ -78,6 +84,8 @@ export class CompaniesTableComponent implements OnInit {
       this._companyService.deleteCompany(this.selectedRow.company_id).subscribe({
         next: (value) => {
           console.log('Company deleted:', value);
+          this.getData()
+          this.selectedRow = null;
         },
         error: (error) => {
           console.error('Error deleting company:', error);
@@ -87,9 +95,11 @@ export class CompaniesTableComponent implements OnInit {
   }
 
   createCompany(data: any) {
+    const that = this
     this._companyService.createCompany(data).subscribe({
       next(value) {
         console.log('Company created:', value);
+        that.getData()
       },
       error(error) {
         console.error('Error creating company:', error);

@@ -1,0 +1,36 @@
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-button {
+  margin-left: auto;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espaciado entre los elementos */
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espaciado entre los inputs */
+}
+
+.form-field {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column; /* Alinea los botones verticalmente */
+  gap: 10px; /* Espaciado entre los botones */
+  margin-top: 20px;
+}
+
+.action-button {
+  width: 100%; /* Botones ocupan todo el ancho */
+}
