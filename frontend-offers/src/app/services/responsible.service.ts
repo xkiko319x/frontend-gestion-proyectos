@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ResponsibleService {
-  apiUrl = 'http://127.0.0.1:8000/api/responsibles/';
+  apiUrl = 'https://backend-gestion-proyectos-jnz9.onrender.com/api/responsibles/'
 
   constructor(private http: HttpClient) {}
 

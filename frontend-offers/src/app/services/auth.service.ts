@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/api/login/';
+  apiUrl = 'https://backend-gestion-proyectos-jnz9.onrender.com/api/login/'
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -31,17 +31,17 @@ export class AuthService {
     );
   }
   getUsers(): Observable<any[]> {
-    let apiurl = 'http://127.0.0.1:8000/api/users/'
+    let apiurl = 'https://backend-gestion-proyectos-jnz9.onrender.com/api/users/'
     return this.http.get<any[]>(apiurl);
   }
 
   logout(): void {
-    localStorage.clear(); // Limpia el storage al cerrar sesión
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
+
   isLoggedIn(): boolean {
     const token = localStorage.getItem('access_token');
-    // Verifica si existe un token
     return !!token;
   }
 }

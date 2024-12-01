@@ -1,9 +1,7 @@
-<app-navbar></app-navbar>  <!-- Barra de navegación -->
+<app-navbar></app-navbar>
 
 <div class="content" style="width: 100%; height: 100%;">
   <app-component-name title="Customers" buttonLabel="Add Customers" (buttonClick)="openModal()"></app-component-name>
-
-  <!-- Tabla de Clientes -->
   <app-ag-grid-table
     style="width: 100%; height: 400px;"
     class="ag-theme-alpine"
@@ -12,7 +10,6 @@
     (rowSelected)="onRowSelected($event)">
   </app-ag-grid-table>
 
-  <!-- Si hay un cliente seleccionado -->
   <div *ngIf="selectedRow" style="margin-top: 20px;">
     <mat-tab-group>
       <!-- Tab de Información -->

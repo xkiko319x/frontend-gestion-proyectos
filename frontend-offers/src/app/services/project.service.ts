@@ -8,8 +8,7 @@ import { Observable } from 'rxjs';
 export class ProjectService {
 
   constructor(private http: HttpClient) {}
-  // apiUrl = 'https://backend-gestion-proyectos-jnz9.onrender.com/api/projects/'
-  apiUrl = 'http://127.0.0.1:8000/api/projects/'
+  apiUrl = 'https://backend-gestion-proyectos-jnz9.onrender.com/api/projects/'
 
   getProjects(): Observable<any> {
     return this.http.get(this.apiUrl);

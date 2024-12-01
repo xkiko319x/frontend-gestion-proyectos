@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClientService {
-  apiUrl = 'http://127.0.0.1:8000/api/clients/';
+  apiUrl = 'https://backend-gestion-proyectos-jnz9.onrender.com/api/clients/'
 
   constructor(private http: HttpClient) {}
 

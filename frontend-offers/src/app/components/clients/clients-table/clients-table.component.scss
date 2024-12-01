@@ -6,7 +6,6 @@ mat-tab-group {
   padding: 10px;
 }
 
-/* Estilo de las etiquetas de las pestañas */
 .mat-tab-label {
   background-color: #007bff; /* Fondo de las pestañas */
   color: white; /* Color del texto */
@@ -17,23 +16,19 @@ mat-tab-group {
   transition: background-color 0.3s ease;
 }
 
-/* Estilo para la pestaña activa (cuando se selecciona) */
 .mat-tab-label.mat-tab-label-active {
-  background-color: #0056b3; /* Fondo más oscuro para la pestaña activa */
+  background-color: #0056b3;
 }
 
-/* Quitar la barra debajo de las pestañas */
 .mat-tab-group .mat-ink-bar {
   display: none;
-  border-bottom: 0; /* Ocultamos la barra predeterminada */
+  border-bottom: 0;
 }
 
-/* Estilo cuando la pestaña es seleccionada */
 .mat-tab-label-active {
   font-weight: bold;
 }
 
-/* Estilo para el formulario */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
