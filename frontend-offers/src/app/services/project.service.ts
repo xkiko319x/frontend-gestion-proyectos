@@ -9,7 +9,6 @@ export class ProjectService {
 
   constructor(private http: HttpClient) {}
   apiUrl = 'https://backend-gestion-proyectos-jnz9.onrender.com/api/projects/'
-
   getProjects(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
@@ -19,8 +18,6 @@ export class ProjectService {
   }
 
   updateProject(id: number, data: any): Observable<any> {
-    console.log(id, data);
-
     return this.http.put(`${this.apiUrl}${id}/`, data);
   }
 

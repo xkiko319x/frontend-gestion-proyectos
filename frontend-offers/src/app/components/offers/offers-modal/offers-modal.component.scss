@@ -1,32 +1,16 @@
-// /* Estilo para los mat-form-field */
-// mat-form-field {
-//   width: 100%;
-//   margin-bottom: 20px;
-// }
-
-// /* Estilos adicionales para los botones */
-// mat-dialog-actions button {
-//   margin-right: 10px;
-// }
 
 .modal-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
 }
 
 .close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+  margin-left: auto;
 }
 
 mat-dialog-content {
-  max-height: 400px;
+  max-height: 500px;
   overflow: auto;
 }
 
@@ -45,4 +29,14 @@ mat-dialog-actions {
 
 .half-width {
   width: 48%; /* Cada input ocupa la mitad del contenedor */
+}
+.button-container {
+  display: flex;
+  flex-direction: column; /* Alinea los botones verticalmente */
+  gap: 10px; /* Espaciado entre los botones */
+  margin-top: 20px;
+}
+
+.action-button {
+  width: 80%; /* Botones ocupan todo el ancho */
 }

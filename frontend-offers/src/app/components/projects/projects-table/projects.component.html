@@ -16,15 +16,9 @@
     <mat-tab-group mat-aling-tabs="start" class="mx-5 alternate-theme">
       <!-- Pestaña de Información -->
       <mat-tab label="Information">
-        <div style="border: 2px; padding: 16px; margin-bottom: 16px;">
-        <form *ngIf="selectedRow" class="form-grid" (ngSubmit)="updateProjectInfo()">
 
-          <!-- Project ID (readonly) -->
-          <div class="form-field">
-            <label for="project_id">Project ID:</label>
-            <input id="project_id" name="project_id" [(ngModel)]="selectedRow.project_id" readonly />
-          </div>
-
+        <form *ngIf="selectedRow" (ngSubmit)="updateProjectInfo()">
+          <div class="form-grid" >
           <!-- Project Name -->
           <div class="form-field">
             <label for="project_name">Project Name:</label>
@@ -55,7 +49,7 @@
             <input
               id="project_client"
               name="project_client"
-              [(ngModel)]="selectedRow.project_client"
+              [(ngModel)]="selectedRow.client_name"
               required
             />
           </div>
@@ -66,31 +60,29 @@
             <input
               id="project_responsible"
               name="project_responsible"
-              [(ngModel)]="selectedRow.project_responsible"
-              type="number"
+              [(ngModel)]="selectedRow.responsible_name"
               required
             />
           </div>
-
+        </div>
           <!-- Botones de Update y Delete -->
-          <div class="form-field form-actions">
+          <div class="button-container">
             <button
               mat-raised-button
               color="primary"
               type="submit"
-              [disabled]="!selectedRow.project_name || !selectedRow.project_budget || !selectedRow.project_client"
+              class="small-button"
             >
               Update
             </button>
-            <button mat-raised-button color="warn" (click)="deleteProject()">Delete</button>
+            <button mat-raised-button color="warn" class="small-button" (click)="deleteProject()">Delete</button>
           </div>
         </form>
-      </div>
-      </mat-tab>
+       </mat-tab>
 
       <!-- Pestaña de Más Información -->
       <mat-tab label="More Information">
-        <p>Más detalles o funcionalidades adicionales pueden ir aquí</p>
+        <p style="margin-left: 20px;">More Information</p>
       </mat-tab>
     </mat-tab-group>
   </div>

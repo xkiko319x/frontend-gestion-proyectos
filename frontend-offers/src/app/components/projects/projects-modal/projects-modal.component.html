@@ -1,47 +1,47 @@
-<h2 mat-dialog-title>
-  Formulario de Proyectos
+<h2 mat-dialog-title class="dialog-header">
+  Add Project Form
   <button mat-icon-button (click)="onClose()" class="close-button" aria-label="Close">
     <mat-icon>close</mat-icon>
   </button>
 </h2>
 
-<form (ngSubmit)="onSubmit()" [formGroup]="form" style="height: auto;">
+<form (ngSubmit)="onSubmit()" [formGroup]="form" style="height: auto;" class="form-container">
   <mat-dialog-content>
     <!-- Nombre del Proyecto -->
-    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
-      <mat-label>Nombre del Proyecto</mat-label>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Project Title</mat-label>
       <input
         matInput
         formControlName="project_name"
         required
-        placeholder="Ingresa el nombre del proyecto"
+        placeholder="Project Title"
       />
     </mat-form-field>
 
     <!-- Presupuesto -->
-    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
-      <mat-label>Presupuesto</mat-label>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Budget</mat-label>
       <input
         matInput
         formControlName="project_budget"
         type="number"
         step="0.01"
         required
-        placeholder="Ingresa el presupuesto del proyecto"
+        placeholder="Project Budget"
       />
     </mat-form-field>
 
     <!-- Cliente (Selector) -->
-    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
-      <mat-label>Cliente</mat-label>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Customer</mat-label>
       <mat-select formControlName="project_client" required>
         <mat-option *ngFor="let client of clientes" [value]="client.client_id">{{ client.client_name }}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <!-- Responsable (Selector) -->
-    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
-      <mat-label>Responsable del Proyecto</mat-label>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Project Responsible</mat-label>
       <mat-select formControlName="project_responsible" required>
         <mat-option *ngFor="let responsible of responsables" [value]="responsible.responsible_id">
           {{ responsible.responsible_name }}
@@ -50,10 +50,10 @@
     </mat-form-field>
   </mat-dialog-content>
 
-  <mat-dialog-actions>
-    <button mat-button (click)="onClose()">Cancelar</button>
-    <button mat-button color="primary" type="submit" [disabled]="form.invalid">
-      Guardar
+  <mat-dialog-actions class="button-container">
+    <button mat-raised-button color="primary" class="action-button" type="submit" [disabled]="form.invalid">
+      Save
     </button>
+    <button mat-raised-button color="warn" class="action-button" style="margin-left: 0px;" (click)="onClose()">Cancel</button>
   </mat-dialog-actions>
 </form>

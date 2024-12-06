@@ -17,7 +17,7 @@ export class ResponsiblesTableComponent implements OnInit {
   // Definir las columnas de la tabla de responsables
   columnDefs = [
     { headerName: 'Id', field: 'responsible_id', flex: 1, hide: true },
-    { headerName: 'Nombre', field: 'responsible_name', flex: 1 },
+    { headerName: 'Responsible Name', field: 'responsible_name', flex: 1 },
     { headerName: 'Username', field: 'responsible_username', flex: 1 }
   ];
 
@@ -28,7 +28,6 @@ export class ResponsiblesTableComponent implements OnInit {
   getData(){
     this._responsibleService.getResponsibles().subscribe({
       next: (value) => {
-        console.log(value);
         this.rowData = value;
       },
       error: (err) => {
@@ -40,14 +39,13 @@ export class ResponsiblesTableComponent implements OnInit {
   onRowSelected(event: any) {
     if (event.node.selected) {
       this.selectedRow = event.data;
-      console.log(this.selectedRow);
     }
   }
 
   openModal(): void {
     const dialogRef = this.dialog.open(ResponsiblesModalComponent, {
       width: '800px',
-      height: '600px',
+      height: '500px',
       data: {
         responsible_user_id: '',
         responsible_name: '',
@@ -58,7 +56,6 @@ export class ResponsiblesTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Resultado del modal:', result);
         this.createResponsible(result);
       }
     });
@@ -98,7 +95,6 @@ export class ResponsiblesTableComponent implements OnInit {
     const that = this
     this._responsibleService.createResponsible(data).subscribe({
       next(value) {
-        console.log(value);
         that.getData()
       },
     });

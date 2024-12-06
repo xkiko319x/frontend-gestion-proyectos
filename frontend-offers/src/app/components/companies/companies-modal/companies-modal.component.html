@@ -8,23 +8,23 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form-container">
   <mat-dialog-content>
     <mat-form-field appearance="fill" class="form-field">
-      <mat-label>Nombre de la Empresa</mat-label>
+      <mat-label>Company Name</mat-label>
       <input matInput formControlName="company_name" required />
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="form-field">
-      <mat-label>Dirección</mat-label>
+      <mat-label>Address</mat-label>
       <input matInput formControlName="company_address" required />
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="form-field">
-      <mat-label>Referencia</mat-label>
+      <mat-label>Company Reference</mat-label>
       <input matInput formControlName="company_reference" required />
     </mat-form-field>
   </mat-dialog-content>
 
   <mat-dialog-actions class="button-container">
-    <button mat-raised-button color="primary" class="action-button" type="submit" [disabled]="form.invalid">Guardar</button>
-    <button mat-raised-button color="warn" class="action-button" (click)="onClose()">Cancelar</button>
+    <button mat-raised-button color="primary" class="action-button" type="submit" [disabled]="form.invalid">Save</button>
+    <button mat-raised-button color="warn" class="action-button" style="margin-left: 0px;" (click)="onClose()">Cancel</button>
   </mat-dialog-actions>
 </form>

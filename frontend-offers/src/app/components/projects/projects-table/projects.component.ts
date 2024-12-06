@@ -1,7 +1,9 @@
+import { ClientService } from './../../../services/client.service';
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../../services/project.service';
 import { ProjectsModalComponent } from '../projects-modal/projects-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ResponsibleService } from '../../../services/responsible.service';
 
 @Component({
   selector: 'app-projects',
@@ -11,25 +13,30 @@ import { MatDialog } from '@angular/material/dialog';
 export class ProjectsTableComponent implements OnInit {
   rowData: any[] = []
   selectedRow: any = null;
+  clients: any[] = []
+  responsibles: any[] = []
 
-  constructor(private _projectService: ProjectService, private dialog: MatDialog) { }
+  constructor(private _projectService: ProjectService, private dialog: MatDialog,
+     private clientService:ClientService, private usersService:ResponsibleService
+  ) { }
 
   columnDefs = [
     { headerName: 'Project ID', field: 'projects_id',flex:1, hide: true },
     { headerName: 'Project Name', field: 'project_name' },
-    { headerName: 'Project Responsible ID', field: 'project_responsible_id',flex:1 },
-    { headerName: 'Project Client', field: 'project_client', flex:1 },
+    { headerName: 'Project Responsible', field: 'responsible_name',flex:1 },
+    { headerName: 'Project Client', field: 'client_name', flex:1 },
     { headerName: 'Project Budget', field: 'project_budget', flex:1 }
   ];
 
   ngOnInit() {
     this.getData()
+    this.fetchClients()
+    this.fetchResponsibles()
   }
 
   getData(){
     this._projectService.getProjects().subscribe({
       next: (value) => {  // Usamos función flecha para mantener el contexto de `this`
-        console.log(value);
         this.rowData = value;
       },
       error: (err) => {
@@ -41,7 +48,6 @@ export class ProjectsTableComponent implements OnInit {
     // Al seleccionar una fila, asignamos la fila seleccionada a `selectedRow`
     if (event.node.selected) {
       this.selectedRow = event.data;
-      console.log(this.selectedRow);
 
     }
   }
@@ -105,9 +111,16 @@ export class ProjectsTableComponent implements OnInit {
     const that = this
     this._projectService.createProject(data).subscribe({
       next(value) {
-        console.log(value)
         that.getData()
       },
     })
+  }
+
+  fetchClients(): void {
+    this.clientService.getClients().subscribe((data) => (this.clients = data));
+  }
+
+  fetchResponsibles(): void {
+    this.usersService.getResponsibles().subscribe((data) => (this.responsibles = data));
   }
 }

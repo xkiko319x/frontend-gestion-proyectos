@@ -29,7 +29,6 @@ export class CompaniesTableComponent implements OnInit {
   getData(){
     this._companyService.getCompanies().subscribe({
       next: (value) => {
-        console.log(value);
         this.rowData = value;
       },
       error: (err) => {
@@ -40,14 +39,13 @@ export class CompaniesTableComponent implements OnInit {
   onRowSelected(event: any) {
     if (event.node.selected) {
       this.selectedRow = event.data;
-      console.log(this.selectedRow);
     }
   }
 
   openModal(): void {
     const dialogRef = this.dialog.open(CompaniesModalComponent, {
       width: '800px',
-      height: '600px',
+      height: '500px',
       data: {
         company_name: '',
         company_address: '',
@@ -58,7 +56,6 @@ export class CompaniesTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Modal result:', result);
         this.createCompany(result);
       }
     });

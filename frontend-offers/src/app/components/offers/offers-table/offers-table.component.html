@@ -15,7 +15,8 @@
     <mat-tab-group>
       <!-- Tab de Información -->
       <mat-tab label="Information">
-        <form *ngIf="selectedRow" class="form-grid" (ngSubmit)="updateOfferInfo()">
+        <form *ngIf="selectedRow" (ngSubmit)="updateOfferInfo()">
+          <div  class="form-grid">
           <!-- Offer ID (readonly) -->
           <div class="form-field">
             <label for="offer_id">Offer ID:</label>
@@ -41,68 +42,56 @@
             />
           </div>
 
-          <!-- Offer Client -->
-          <div class="form-field">
-            <label for="offer_client">Offer Client:</label>
-            <input id="offer_client" name="offer_client" [(ngModel)]="selectedRow.offer_client" type="number" required />
-          </div>
-
-          <!-- Offer Client Company -->
-          <div class="form-field">
-            <label for="offer_client_company">Client Company:</label>
-            <input
-              id="offer_client_company"
-              name="offer_client_company"
-              [(ngModel)]="selectedRow.offer_client_company"
-              required
-            />
-          </div>
-
           <!-- Offer Reference -->
           <div class="form-field">
             <label for="offer_reference">Offer Reference:</label>
             <input id="offer_reference" name="offer_reference" [(ngModel)]="selectedRow.offer_reference" required />
           </div>
 
+
+
+          <div class="form-field">
+            <label for="offer_client">Offer Client:</label>
+            <input id="offer_client" name="offer_client" [(ngModel)]="selectedRow.client_name" required />
+          </div>
+
+          <!-- Offer Client Company -->
+          <div class="form-field">
+            <label for="offer_company">Client Company:</label>
+            <input id="offer_company" name="offer_company" [(ngModel)]="selectedRow.company_name" required />
+          </div>
+
           <!-- Offer Project -->
           <div class="form-field">
             <label for="offer_project">Offer Project:</label>
-            <input id="offer_project" name="offer_project" [(ngModel)]="selectedRow.offer_project" type="number" required />
+            <input id="offer_project" name="offer_project" [(ngModel)]="selectedRow.project_name" required />
           </div>
 
           <!-- Offer Responsible -->
           <div class="form-field">
             <label for="offer_responsible">Offer Responsible:</label>
-            <input
-              id="offer_responsible"
-              name="offer_responsible"
-              [(ngModel)]="selectedRow.offer_responsible"
-              type="number"
-              required
-            />
+            <input id="offer_responsible" name="offer_responsible" [(ngModel)]="selectedRow.responsible_name" required />
           </div>
-
+        </div>
           <!-- Botones de Update y Delete -->
-          <div class="form-field form-actions">
+          <div class="button-container">
             <button
               mat-raised-button
               color="primary"
               type="submit"
-              [disabled]="!selectedRow.offer_title || !selectedRow.offer_amount || !selectedRow.offer_client"
+              class="small-button"
             >
               Update
             </button>
-            <button mat-raised-button color="warn" (click)="deleteOffer()">Delete</button>
+            <button mat-raised-button color="warn" class="small-button" (click)="deleteOffer()">Delete</button>
           </div>
         </form>
       </mat-tab>
 
       <!-- Tab de Más Información -->
       <mat-tab label="More Information">
-        <p>mas info a implementar</p>
+        <p style="margin-left: 20px;">More Information</p>
       </mat-tab>
     </mat-tab-group>
   </div>
-
-
 </div>

@@ -58,8 +58,7 @@ export class ResponsiblesModalComponent implements OnInit {
   onSubmit(): void {
     if (this.form.valid) {
       const responsibleData = this.form.value;
-      console.log(responsibleData);  // Enviar al backend para crear el responsable
-      this.dialogRef.close(responsibleData);  // Cierra el modal y pasa los datos
+      this.dialogRef.close(responsibleData);
     }
   }
 

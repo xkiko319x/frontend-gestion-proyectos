@@ -1,5 +1,5 @@
 <h2 mat-dialog-title class="modal-title">
-  Formulario de Ofertas
+  Add Offer Form
   <button
     mat-icon-button
     (click)="onClose()"
@@ -14,7 +14,7 @@
   <mat-dialog-content>
     <!-- Offer Title -->
     <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
-      <mat-label style="font-size: 16px;">Título de la Oferta</mat-label>
+      <mat-label style="font-size: 16px;">Offer Title</mat-label>
       <input
         matInput
         formControlName="offer_title"
@@ -26,7 +26,7 @@
     <!-- Row 1: Offer Amount and Offer Reference -->
     <div class="form-row">
       <mat-form-field appearance="fill" class="half-width">
-        <mat-label style="font-size: 16px;">Monto de la Oferta</mat-label>
+        <mat-label style="font-size: 16px;">Offer Amount</mat-label>
         <input
           matInput
           formControlName="offer_amount"
@@ -38,7 +38,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="half-width">
-        <mat-label style="font-size: 16px;">Referencia de la Oferta</mat-label>
+        <mat-label style="font-size: 16px;">Offer Reference</mat-label>
         <input
           matInput
           formControlName="offer_reference"
@@ -51,7 +51,7 @@
     <!-- Row 2: Offer Client and Offer Project -->
     <div class="form-row">
       <mat-form-field appearance="fill" class="half-width">
-        <mat-label style="font-size: 16px;">Cliente</mat-label>
+        <mat-label style="font-size: 16px;">Customer</mat-label>
         <mat-select
           formControlName="offer_client"
           required
@@ -64,7 +64,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="half-width">
-        <mat-label style="font-size: 16px;">Proyecto</mat-label>
+        <mat-label style="font-size: 16px;">Project</mat-label>
         <mat-select
           formControlName="offer_project"
           required
@@ -75,82 +75,34 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Responsible</mat-label>
+        <mat-select formControlName="offer_responsible" required
+        style="font-size: 16px;">
+          <mat-option *ngFor="let responsible of responsibles" [value]="responsible.responsible_id">
+            {{ responsible.responsible_name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Company</mat-label>
+        <mat-select formControlName="offer_company" required
+        style="font-size: 16px;">
+          <mat-option *ngFor="let company of companies" [value]="company.company_id">
+            {{ company.company_name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
     </div>
   </mat-dialog-content>
 
-  <mat-dialog-actions>
-    <button mat-button (click)="onClose()">Cancelar</button>
-    <button mat-button type="submit" [disabled]="form.invalid">Guardar</button>
+  <mat-dialog-actions class="button-container">
+    <button mat-raised-button color="primary" class="action-button" type="submit" [disabled]="form.invalid">Save</button>
+    <button mat-raised-button color="warn" class="action-button" style="margin-left: 0px;" (click)="onClose()">Cancel</button>
   </mat-dialog-actions>
 </form>
-
-
-<!-- <h2 mat-dialog-title>
-  Formulario de Ofertas
-  <button mat-icon-button (click)="onClose()" class="close-button" aria-label="Close">
-    <mat-icon>close</mat-icon>
-  </button>
-</h2>
-
-<form (ngSubmit)="onSubmit()" [formGroup]="form" style="height: 600px;">
-  <mat-dialog-content>
-    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
-      <mat-label style="font-size: 16px;">Título de la Oferta</mat-label>
-      <input
-        matInput
-        formControlName="offer_title"
-        required
-        style="font-size: 16px; padding: 15px 10px;"
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
-      <mat-label style="font-size: 16px;">Monto de la Oferta</mat-label>
-      <input
-        matInput
-        formControlName="offer_amount"
-        type="number"
-        step="0.01"
-        required
-        style="font-size: 16px; padding: 15px 10px;"
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
-      <mat-label style="font-size: 16px;">ID del Cliente</mat-label>
-      <input
-        matInput
-        formControlName="offer_client"
-        type="number"
-        required
-        style="font-size: 16px; padding: 15px 10px;"
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
-      <mat-label style="font-size: 16px;">Referencia de la Oferta</mat-label>
-      <input
-        matInput
-        formControlName="offer_reference"
-        required
-        style="font-size: 16px; padding: 15px 10px;"
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 20px;">
-      <mat-label style="font-size: 16px;">ID del Proyecto</mat-label>
-      <input
-        matInput
-        formControlName="offer_project"
-        type="number"
-        required
-        style="font-size: 16px; padding: 15px 10px;"
-      />
-    </mat-form-field>
-  </mat-dialog-content>
-
-  <mat-dialog-actions>
-    <button mat-button (click)="onClose()">Cancelar</button>
-    <button mat-button type="submit" [disabled]="form.invalid">Guardar</button>
-  </mat-dialog-actions>
-</form> -->

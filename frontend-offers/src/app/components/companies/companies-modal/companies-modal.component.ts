@@ -29,7 +29,6 @@ export class CompaniesModalComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.valid) {
-      console.log('Form submitted:', this.form.value);
       this.dialogRef.close(this.form.value);
     }
   }

@@ -19,8 +19,6 @@ export class ClientService {
   }
 
   updateClient(id: number, client: any): Observable<any> {
-    console.log(client, id);
-
     return this.http.put<any>(`${this.apiUrl}${id}/`, client);
   }
 

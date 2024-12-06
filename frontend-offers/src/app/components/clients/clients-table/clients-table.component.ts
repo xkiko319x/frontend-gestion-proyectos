@@ -26,7 +26,6 @@ export class ClientsTableComponent implements OnInit {
   getData(){
     this._clientService.getClients().subscribe({
       next: (value) => {
-        console.log(value);
         this.rowData = value;
       },
       error: (err) => {
@@ -37,14 +36,13 @@ export class ClientsTableComponent implements OnInit {
   onRowSelected(event: any) {
     if (event.node.selected) {
       this.selectedRow = event.data;
-      console.log(this.selectedRow);
     }
   }
 
   openModal(): void {
     const dialogRef = this.dialog.open(ClientsModalComponent, {
       width: '800px',
-      height: '600px',
+      height: '400px',
       data: {
         client_name: '',
         client_reference: '',
@@ -54,7 +52,6 @@ export class ClientsTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Resultado del modal:', result);
         this.createClient(result);
       }
     });
@@ -94,7 +91,6 @@ export class ClientsTableComponent implements OnInit {
     const that = this
     this._clientService.createClient(data).subscribe({
       next(value) {
-        console.log(value);
         that.getData()
       },
     });

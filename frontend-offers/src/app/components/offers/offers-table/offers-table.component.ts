@@ -1,8 +1,11 @@
+import { ResponsibleService } from './../../../services/responsible.service';
 import { Component, OnInit } from '@angular/core';
 import { OfferService } from '../../../services/offer.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OffersModalComponent } from '../offers-modal/offers-modal.component';
-import { throwMatDuplicatedDrawerError } from '@angular/material/sidenav';
+import { ClientService } from '../../../services/client.service';
+import { CompanyService } from '../../../services/company.service';
+import { ProjectService } from '../../../services/project.service';
 
 @Component({
   selector: 'app-offers-table',
@@ -12,25 +15,34 @@ import { throwMatDuplicatedDrawerError } from '@angular/material/sidenav';
 export class OffersTableComponent implements OnInit {
   rowData: any[] = []
   selectedRow: any = null;
+  clients: any[] = [];
+  projects: any[] = [];
+  responsibles: any[] = [];
+  companies: any[] = [];
 
-  constructor(private _offerService: OfferService,  private dialog: MatDialog) { }
+  constructor(private _offerService: OfferService,  private dialog: MatDialog,private clientService: ClientService,
+    private projectService: ProjectService, private companiesService: CompanyService,private userService: ResponsibleService) { }
   columnDefs = [
     { headerName: 'Id', field: 'offer_id', flex:1, hide:true },
-    { headerName: 'Client Company', field: 'offer_client_company', flex:1 },
-    { headerName: 'offer_title', field: 'offer_title', flex:1 },
-    { headerName: 'offer_responsible', field: 'offer_responsible', flex:1 },
-    { headerName: 'offer_reference', field: 'offer_reference', flex:1 },
-    { headerName: 'offer_client', field: 'offer_client', flex:1 },
-    { headerName: 'offer_amount', field: 'offer_amount', flex:1 },
+    { headerName: 'Offer Title', field: 'offer_title', flex:1 },
+    { headerName: 'Offer Reference', field: 'offer_reference', flex:1 },
+    { headerName: 'Company', field: 'company_name', flex:1 },
+    { headerName: 'Offer Client', field: 'client_name', flex:1 },
+    { headerName: 'Offer Responsible', field: 'responsible_name', flex:1 },
+    { headerName: 'Offer Amount', field: 'offer_amount', flex:1 },
   ];
 
   ngOnInit() {
    this.getData()
+   this.fetchClients();
+   this.fetchCompanies();
+   this.fetchProjects();
+   this.fetchResponsibles();
   }
+
   getData(){
     this._offerService.getOffers().subscribe({
       next: (value) => {
-        console.log(value);
         this.rowData = value;
       },
       error: (err) => {
@@ -38,33 +50,30 @@ export class OffersTableComponent implements OnInit {
       }
     });
   }
+
   onRowSelected(event: any) {
-    // Al seleccionar una fila, asignamos la fila seleccionada a `selectedRow`
     if (event.node.selected) {
       this.selectedRow = event.data;
-      console.log(this.selectedRow);
-
     }
   }
 
   openModal(): void {
     const dialogRef = this.dialog.open(OffersModalComponent, {
       width: '800px',
-      height: '600px',
+      height: '700px',
       data: {
         offer_title: '',
         offer_amount: '',
-        offer_client: '',
         offer_reference: '',
+        offer_client: '',
         offer_project: '',
+        offer_responsible:'',
+        offer_company:'',
       },
-      panelClass: 'centered-modal'
     });
 
-    // Lógica después de que el modal se cierre
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Resultado del modal:', result);
         this.createOffer(result);
       }
     });
@@ -72,7 +81,7 @@ export class OffersTableComponent implements OnInit {
 
   updateOfferInfo() {
     if (this.selectedRow) {
-      this._offerService.updateOffer(this.selectedRow.of_ia_id, this.selectedRow).subscribe({
+      this._offerService.updateOffer(this.selectedRow.offer_id, this.selectedRow).subscribe({
         next: (value) => {
           console.log('Empresa actualizada', value);
           this.getData()
@@ -86,11 +95,9 @@ export class OffersTableComponent implements OnInit {
     }
   }
 
-
-  // Método para eliminar la empresa
   deleteOffer() {
-    if (this.selectedRow && this.selectedRow.of_ia_id) {
-      this._offerService.deleteOffer(this.selectedRow.of_ia_id).subscribe({
+    if (this.selectedRow && this.selectedRow.offer_id) {
+      this._offerService.deleteOffer(this.selectedRow.offer_id).subscribe({
         next: (value) => {
           console.log('offer eliminada', value);
           this.getData()
@@ -103,15 +110,29 @@ export class OffersTableComponent implements OnInit {
     }
   }
 
-
   createOffer(data:any){
     const that = this
     this._offerService.createOffer(data).subscribe({
       next(value) {
-        console.log(value)
         that.getData()
       },
     })
+  }
+
+  fetchClients(): void {
+    this.clientService.getClients().subscribe((data) => (this.clients = data));
+  }
+
+  fetchResponsibles(): void {
+    this.userService.getResponsibles().subscribe((data) => (this.responsibles = data));
+  }
+
+  fetchCompanies(): void {
+    this.companiesService.getCompanies().subscribe((data) => (this.companies = data));
+  }
+
+  fetchProjects(): void {
+    this.projectService.getProjects().subscribe((data) => (this.projects = data));
   }
 
 }

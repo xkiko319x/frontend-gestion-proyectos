@@ -14,7 +14,8 @@
     <mat-tab-group>
       <!-- Tab de Información -->
       <mat-tab label="Information">
-        <form *ngIf="selectedRow" class="form-grid" (ngSubmit)="updateClientInfo()">
+        <form *ngIf="selectedRow"  (ngSubmit)="updateClientInfo()">
+          <div class="form-grid">
           <!-- Nombre del Cliente -->
           <div class="form-field">
             <label for="client_name">Customer Name:</label>
@@ -26,25 +27,26 @@
             <label for="client_reference">Customer Reference:</label>
             <input id="client_reference" name="client_reference" [(ngModel)]="selectedRow.client_reference" required />
           </div>
-
+          </div>
           <!-- Botones de Update y Delete -->
-          <div class="form-field form-actions">
+          <div class="button-container">
             <button
               mat-raised-button
               color="primary"
               type="submit"
-              [disabled]="!selectedRow.client_name || !selectedRow.client_reference"
+              class="small-button"
             >
               Update
             </button>
-            <button mat-raised-button color="warn" (click)="deleteClient()">Delete</button>
+            <button mat-raised-button color="warn"
+            class="small-button" (click)="deleteClient()">Delete</button>
           </div>
         </form>
       </mat-tab>
 
       <!-- Tab de Más Información -->
       <mat-tab label="More Information">
-        <p>Más información a implementar</p>
+        <p style="margin-left: 20px;">More Information</p>
       </mat-tab>
     </mat-tab-group>
   </div>

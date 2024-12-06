@@ -17,43 +17,45 @@
     <mat-tab-group>
       <!-- Tab de Información -->
       <mat-tab label="Information">
-        <form *ngIf="selectedRow" class="form-grid" (ngSubmit)="updateResponsibleInfo()">
-          <!-- Responsable ID (readonly) -->
-          <div class="form-field">
-            <label for="responsible_id">Responsable ID:</label>
-            <input id="responsible_id" name="responsible_id" [(ngModel)]="selectedRow.responsible_id" readonly />
-          </div>
-
+        <form *ngIf="selectedRow" (ngSubmit)="updateResponsibleInfo()">
           <!-- Nombre del Responsable -->
-          <div class="form-field">
-            <label for="responsible_name">Nombre:</label>
-            <input id="responsible_name" name="responsible_name" [(ngModel)]="selectedRow.responsible_name" required />
-          </div>
+          <div  class="form-grid">
+            <div class="form-field">
+              <label for="responsible_name">Responsible Name:</label>
+              <input id="responsible_name" name="responsible_name" [(ngModel)]="selectedRow.responsible_name" required />
+            </div>
 
-          <!-- Username del Responsable -->
-          <div class="form-field">
-            <label for="responsible_username">Username:</label>
-            <input id="responsible_username" name="responsible_username" [(ngModel)]="selectedRow.responsible_username" required />
+            <!-- Username del Responsable -->
+            <div class="form-field">
+              <label for="responsible_username">Username:</label>
+              <input id="responsible_username" name="responsible_username" [(ngModel)]="selectedRow.responsible_username" required />
+            </div>
           </div>
-
           <!-- Botones de Update y Delete -->
-          <div class="form-field form-actions">
+          <div class="button-container">
             <button
               mat-raised-button
               color="primary"
               type="submit"
-              [disabled]="!selectedRow.responsible_name || !selectedRow.responsible_username"
+              class="small-button"
             >
               Update
             </button>
-            <button mat-raised-button color="warn" (click)="deleteResponsible()">Delete</button>
+            <button
+              mat-raised-button
+              color="warn"
+              class="small-button"
+              (click)="deleteResponsible()"
+            >
+              Delete
+            </button>
           </div>
         </form>
       </mat-tab>
 
       <!-- Tab de Más Información -->
       <mat-tab label="More Information">
-        <p>Más información a implementar</p>
+        <p style="margin-left: 20px;">More Information</p>
       </mat-tab>
     </mat-tab-group>
   </div>

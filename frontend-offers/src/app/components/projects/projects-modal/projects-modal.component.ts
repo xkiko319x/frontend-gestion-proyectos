@@ -46,7 +46,6 @@ export class ProjectsModalComponent implements OnInit {
     this.responsibleService.getResponsibles().subscribe(
       (data) => {
         this.responsables = data;
-        console.log(data);
       },
       (error) => {
         console.error('Error fetching responsibles', error);
@@ -58,7 +57,6 @@ export class ProjectsModalComponent implements OnInit {
     this.clientService.getClients().subscribe(
       (data) => {
         this.clientes = data;
-        console.log(data);
       },
       (error) => {
         console.error('Error fetching clients', error);
